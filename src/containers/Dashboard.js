@@ -9,7 +9,7 @@ export default function Dashboard({ children }) {
   }); */
 
   return (
-    <div id="dashboard" className="">
+    <div id="dashboard" className="container">
       {children}
     </div>
   );

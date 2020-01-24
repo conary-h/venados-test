@@ -1,0 +1,34 @@
+@import 'variables';
+@import 'mixins';
+@import 'utils';
+@import 'dashboard';
+@import '~antd/dist/antd.css';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: #f5f8fb;
+}
+
+ul {
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+.ant-modal {
+  width: 95%;
+  @media (min-width: 768px) {
+    width: 95% !important;
+  }
+  @media (min-width: 1024px) {
+    width: 75rem !important;
+  }
+
+  @media (min-width: 1200px) {
+    width: 85rem !important;
+  }
+}
