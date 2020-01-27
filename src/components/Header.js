@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  headerOption: {
+    fontSize: '1.2rem'
+  }
 }));
 
 export default function Header() {
@@ -36,9 +39,9 @@ export default function Header() {
             Venados Test
           </Typography>
           <div className="hidden-large-down">
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Estadísticas</Button>
-            <Button color="inherit">Jugadores</Button>
+            <Button color="inherit" className={classes.headerOption}>Home</Button>
+            <Button color="inherit" className={classes.headerOption}>Estadísticas</Button>
+            <Button color="inherit" className={classes.headerOption}>Jugadores</Button>
           </div>
         </Toolbar>
       </AppBar>
