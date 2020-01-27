@@ -1,11 +1,87 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: '2rem',
+    color: '#000'
+  },
+  appBar: {
+    backgroundColor: '#fff',
+    color: '#000',
+    border: '1px solid #bebebe',
+    boxShadow: 'none'
+  },
+  labelTab: {
+    fontSize: '1.2rem'
+  }
+}));
+
+export default function MatchTabs(props) {
+  const classes = useStyles();
+  const [tabValue, setTabValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
+  const a11yProps = (index) => {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+  const getLeagueTypes = (gamesData) => {
+    return [...new Set(gamesData.map(game =>  game.league))];
+  }
+  const getLeagueMatchesMonthList = (leagueGames) => {
+    return leagueGames.map(game => ({'monthId': moment(game.datetime).format('M'), monthName: moment(game.datetime).format('MMMM') }))
+  };
+
+  const filterGamesDataByLeague = (gamesData) => {
+    const type = tabValue === 0 ? 'Copa MX' : 'Ascenso MX';
+    return gamesData.filter(game => game.league === type)
+  };
+  const generateTabItems = (leagueTypes) => {
+    return leagueTypes.map((league, index) => <Tab key={index} label={league} {...a11yProps(index)} className={classes.labelTab} />)
+  };
+
+  const generateGamesUl = (leagueGames) => {
+    return leagueGames.map((game, index) => <li key={index}>{game.opponent}</li>)
+  };
+
+  const leagueTypes = getLeagueTypes(props.gamesData);
+  const leagueGames = filterGamesDataByLeague(props.gamesData);
+  const monthList = getLeagueMatchesMonthList(leagueGames);
+
+  //TODO MonthPanel. MatchItem
+
+  console.log(monthList);
+  
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.appBar}>
+        <Tabs value={tabValue} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth">
+          {props.gamesData.length ? generateTabItems(leagueTypes) : ''}
+        </Tabs>
+      </AppBar>
+      <TabPanel value={tabValue} index={0}>
+        {generateGamesUl(leagueGames)}
+      </TabPanel>
+      <TabPanel value={tabValue} index={1}>
+        {generateGamesUl(leagueGames)}
+      </TabPanel>
+    </div>
+  );
+}
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,56 +106,3 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    marginTop: '2rem',
-    color: '#000'
-  },
-  appBar: {
-    backgroundColor: '#fff',
-    color: '#000',
-    border: '1px solid #bebebe',
-    boxShadow: 'none'
-  },
-  labelTab: {
-    fontSize: '1.2rem'
-  }
-}));
-
-export default function MatchTabs(props) {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const filterGamesDataByLeague = (gamesData, type) => {
-    return gamesData.filter(game => game.league === type)
-  }; 
-
-  console.log(filterGamesDataByLeague(props.gamesData, 'Ascenso MX'));
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth">
-          <Tab label="COPA MX" {...a11yProps(0)} className={classes.labelTab} />
-          <Tab label="ASCENSO MX" {...a11yProps(1)} className={classes.labelTab} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        COPA MX
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        ASCENSO MX
-      </TabPanel>
-    </div>
-  );
-}
