@@ -1,41 +1,48 @@
 import React, {useState} from 'react';
-import { Menu, Icon } from 'antd';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SwipeableTemporaryDrawer  from './Drawer';
 
-const { SubMenu } = Menu;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 export default function Header() {
+  const classes = useStyles();
+  const [isDrawerShowing, setIsDrawerShowing] = useState(false);
+
   return (
-    <Menu mode="horizontal">
-      <Menu.Item key="mail">
-        <Icon type="mail" />
-        Navigation One
-      </Menu.Item>
-      <Menu.Item key="app" disabled>
-        <Icon type="appstore" />
-        Navigation Two
-      </Menu.Item>
-      <SubMenu
-        title={
-          <span className="submenu-title-wrapper">
-            <Icon type="setting" />
-            Navigation Three - Submenu
-          </span>
-        }
-      >
-        <Menu.ItemGroup title="Item 1">
-          <Menu.Item key="setting:1">Option 1</Menu.Item>
-          <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </Menu.ItemGroup>
-        <Menu.ItemGroup title="Item 2">
-          <Menu.Item key="setting:3">Option 3</Menu.Item>
-          <Menu.Item key="setting:4">Option 4</Menu.Item>
-        </Menu.ItemGroup>
-      </SubMenu>
-      <Menu.Item key="alipay">
-        <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-          Navigation Four - Link
-        </a>
-      </Menu.Item>
-    </Menu>
+    <div id="header">
+      <AppBar position="static" className="app-bar">
+        <Toolbar>
+          <IconButton edge="start" className={`hidden-large-up ${classes.menuButton}`} color="inherit" aria-label="menu" onClick={() => setIsDrawerShowing(true)}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Venados Test
+          </Typography>
+          <div className="hidden-large-down">
+            <Button color="inherit">Home</Button>
+            <Button color="inherit">Estadísticas</Button>
+            <Button color="inherit">Jugadores</Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <SwipeableTemporaryDrawer setIsDrawerShowing={setIsDrawerShowing} isDrawerShowing={isDrawerShowing}/>
+    </div>
   );
 }
