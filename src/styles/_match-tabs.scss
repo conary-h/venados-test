@@ -1,6 +1,5 @@
 #match-tabs {
   .month-panel {
-    padding-bottom: 4rem;
     background-color: #fff;
     .month-name {
       background-color: #747474;
@@ -15,4 +14,51 @@
       padding: 0;
     }
   }
+  .match-item {
+    .venados-logo {
+      max-width: 4.4rem;
+      max-height: 5.4rem;
+    }
+    .opponent-logo {
+      max-width: 5.4rem;
+      max-height: 5.4rem;
+    }
+    .info-block {
+      min-width: 5rem;
+    }
+    .info-team {
+      max-width: 6rem;
+
+      &.score {
+        font-size: 3rem;
+      }
+      .team-name {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+    }
+    .match-dashboard {
+      display: flex;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+      text-align: center;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .info-team.one {
+      order: 1;
+    }
+    .info-team.two {
+      order: 2;
+    }
+    .info-team.three {
+      order: 3;
+    }
+    .info-team.four {
+      order: 4;
+    }
+  }
 }
+
+
+

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+import MatchItem from './MatchItem';
 
 export default function MonthPanel(props) {
   const filterMatchesByCurrentMonth = (leagueGames, currentMonth) => {
@@ -11,7 +12,7 @@ export default function MonthPanel(props) {
 
   const generateGamesUl = leagueGames => {
     return leagueGames.map((game, index) => (
-      <li key={index}>{game.opponent}</li>
+      <MatchItem key={index} matchData={game}/>
     ));
   };
 
