@@ -1,10 +1,11 @@
-@import 'variables';
-@import 'mixins';
-@import 'utils';
-@import 'header';
-@import 'drawer';
-@import 'dashboard';
-@import '~antd/dist/antd.css';
+@import "variables";
+@import "mixins";
+@import "utils";
+@import "header";
+@import "drawer";
+@import "dashboard";
+@import "match-tabs";
+@import "~antd/dist/antd.css";
 
 html {
   font-size: 10px;
