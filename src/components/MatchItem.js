@@ -13,8 +13,8 @@ export default function MatchItem(props) {
       <div className="match-dashboard">
         <div className="info-block">
           <DateRangeIcon  className="display-block"/>
-          <big className="display-block">{moment(datetime).format('Do')}</big>
-          <small className="display-block">{moment(datetime).format('dddd')}</small>
+          <big className="display-block date-day">{moment(datetime).format('Do')}</big>
+          <small className="display-block date-day-word">{moment(datetime).format('dddd')}</small>
         </div>
         <div className={`${!local ? 'one' : 'four'} info-team ib`}>
           <img className="opponent-logo" src={opponent_image} alt={opponent}/>

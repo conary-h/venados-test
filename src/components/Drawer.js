@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from '@reach/router';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -46,15 +47,15 @@ export default function SwipeableTemporaryDrawer(props) {
       <List>
         <ListItem button>
           <ListItemIcon><HomeIcon /></ListItemIcon>
-          <ListItemText className="drawer-option" primary={"Home"} />
+          <Link to="/"><ListItemText className="drawer-option" primary={"Home"} /></Link>
         </ListItem>
         <ListItem button>
           <ListItemIcon><TimelineIcon /></ListItemIcon>
-          <ListItemText className="drawer-option" primary={"Estadísticas"} />
+          <Link to="/statistics"><ListItemText className="drawer-option" primary={"Estadísticas"} /></Link>
         </ListItem>
         <ListItem button>
           <ListItemIcon><DirectionsRunIcon /></ListItemIcon>
-          <ListItemText className="drawer-option" primary={"Jugadores"} />
+          <Link to="/players"><ListItemText className="drawer-option" primary={"Jugadores"} /></Link>
         </ListItem>
       </List>
     </div>

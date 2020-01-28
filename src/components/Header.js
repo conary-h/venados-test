@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from '@reach/router';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   headerOption: {
-    fontSize: '1.2rem'
+    fontSize: '1.2rem',
+    color: '#fff'
   }
 }));
 
@@ -39,9 +41,9 @@ export default function Header() {
             Venados Test
           </Typography>
           <div className="hidden-large-down">
-            <Button color="inherit" className={classes.headerOption}>Home</Button>
-            <Button color="inherit" className={classes.headerOption}>Estadísticas</Button>
-            <Button color="inherit" className={classes.headerOption}>Jugadores</Button>
+            <Link to="/"><Button color="inherit" className={classes.headerOption}>Home</Button></Link>
+            <Link to="/statistics"><Button color="inherit" className={classes.headerOption}>Estadísticas</Button></Link>
+            <Link to="/players"><Button color="inherit" className={classes.headerOption}>Jugadores</Button></Link>
           </div>
         </Toolbar>
       </AppBar>

@@ -16,8 +16,8 @@
   }
   .match-item {
     .venados-logo {
-      max-width: 4.4rem;
-      max-height: 5.4rem;
+      max-width: 3.4rem;
+      max-height: 4.4rem;
     }
     .opponent-logo {
       max-width: 5.4rem;
@@ -25,16 +25,32 @@
     }
     .info-block {
       min-width: 5rem;
+
+      .date-day {
+        font-size: 1.5rem;
+      }
+
+      .date-day-word {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
     }
     .info-team {
       max-width: 6rem;
 
       &.score {
-        font-size: 3rem;
+        font-size: 2rem;
+        @include respond-to(large) {
+          font-size: 3rem;
+        }
       }
       .team-name {
         margin-top: 1rem;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        @include respond-to(large) {
+          font-size: 1.3rem;
+        }
+        
       }
     }
     .match-dashboard {
@@ -43,7 +59,13 @@
       margin-bottom: 4rem;
       text-align: center;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
+      padding-left: 1rem;
+      padding-right: 1.5rem;
+      @include respond-to(large) {
+        padding-left: 4.5rem;
+        padding-right: 5.5rem;
+      }
     }
     .info-team.one {
       order: 1;
