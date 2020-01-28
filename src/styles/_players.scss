@@ -1,0 +1,22 @@
+#players {
+  .player-info {
+    margin-bottom: 3rem;
+    text-align: center;
+    img {
+      margin-bottom: 1.5rem;
+      border-radius: 100%;
+      width: 10rem;
+      height: 11rem;
+      border: 2px solid #bebebe;  
+
+      @include respond-to(large) {
+        width: 14rem;
+        height: 15rem;
+      }
+    }
+    .info-item {
+      display: block;
+      color: #000;
+    }
+  }
+}

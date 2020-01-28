@@ -5,6 +5,7 @@
 @import "drawer";
 @import "dashboard";
 @import "match-tabs";
+@import "players";
 @import "~antd/dist/antd.css";
 
 html {
@@ -20,6 +21,10 @@ ul {
 }
 a {
   text-decoration: none;
+}
+
+.App {
+  background: #f0f8ff;
 }
 
 .ant-modal {
