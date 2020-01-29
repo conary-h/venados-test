@@ -8,6 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import MonthPanel from "./MonthPanel";
+import CircularIndeterminate from './Spiner';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -78,10 +79,6 @@ export default function MatchTabs(props) {
   const monthList = getMonthsList(leagueGames);
   const uniqueMonths = [...new Set(monthList.map(month => month.monthName))];
 
-  //TODO MonthPanel. MatchItem
-
-  console.log(monthList);
-
   return (
     <div className={classes.root} id="match-tabs">
       <AppBar position="static" className={classes.appBar}>
@@ -95,6 +92,7 @@ export default function MatchTabs(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={tabValue} index={0}>
+        {props.gamesData.length <= 0 && <CircularIndeterminate className="txt-center"/> }
         {generateMontContainers(uniqueMonths, leagueGames)}
       </TabPanel>
       <TabPanel value={tabValue} index={1}>

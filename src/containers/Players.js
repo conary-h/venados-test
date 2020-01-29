@@ -3,9 +3,11 @@ import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import PlayerDetails from '../components/PlayerDetails';
+import CircularIndeterminate from '../components/Spiner';
 
 export default function Players() {
   const [openModal, setOpenModal] = useState(false);
+  const [isErrorOnFetch, setIsErrorOnFetch] = useState(false);
   const [playersData, setPlayersData] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState({});
 
@@ -20,7 +22,12 @@ export default function Players() {
   };
 
   const getPlayersData = () => {
-    axios.get("/players").then(res => setPlayersData(res.data));
+    axios.get("/players").then(res => {
+      console.log(res)
+      setPlayersData(res.data)
+    }).catch(error => {
+      setIsErrorOnFetch(true);
+    });
   };
   const consolidatedData = Object.keys(playersData).map(key => {
     return key !== 'coaches' ? playersData[key] : {};
@@ -39,7 +46,7 @@ export default function Players() {
       </Grid>)
     });
   };
-  console.log(consolidatedData);
+
   const getSelectedPlayer = (playersData, currentPlayerId) => {
     return playersData.filter(player => player.number === parseInt(currentPlayerId, 10))
   };
@@ -54,9 +61,13 @@ export default function Players() {
   return (
     <div id="players">
       <h1>Players</h1>
-      <Grid container spacing={0} direction="row" justify="center" alignItems="center">
-        {generatePlayerItemList(consolidatedData)}
-      </Grid>
+      {playersData.length <= 0 && <CircularIndeterminate className="txt-center"/> }
+      {!isErrorOnFetch ? 
+        (<Grid container spacing={0} direction="row" justify="center" alignItems="center">
+          {generatePlayerItemList(consolidatedData)}
+        </Grid>)
+        : <strong className="fetch-error">There was an error getting the data. <br /> Please refresh the page. </strong>
+      }
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

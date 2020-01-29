@@ -1,5 +1,6 @@
 #dashboard {
   padding: 0;
+  padding-bottom: 4rem;
   .main-title {
     display: inline-block;
   }
@@ -14,5 +15,17 @@
   }
   .MuiTabs-indicator {
     background-color: #000;
+  }
+  .home-logo {
+    width: 11rem;
+    height: 14rem;
+    margin: 3rem auto;
+    display: block;
+  }
+  .fetch-error {
+    color: #FF3333;
+    font-size: 1.2rem;
+    text-align: center;
+    display: block;
   }
 }
