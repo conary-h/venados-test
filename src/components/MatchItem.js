@@ -6,7 +6,6 @@ import Icon from '@material-ui/core/Icon';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 
 export default function MatchItem(props) {
-  console.log(props.matchData);
   const {local, opponent, opponent_image, datetime, image, home_score, away_score } = props.matchData;
   return (
     <div className="match-item">
